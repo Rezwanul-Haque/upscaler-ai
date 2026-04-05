@@ -52,7 +52,7 @@ export function useLabJob(imageId: number | null) {
     models: [],
     settings: DEFAULT_SETTINGS,
   });
-  const pollingRef = useRef<ReturnType<typeof setInterval>>();
+  const pollingRef = useRef<ReturnType<typeof setInterval>>(undefined);
 
   const stopPolling = useCallback(() => {
     if (pollingRef.current) {

@@ -36,6 +36,22 @@ export default function GalleryPage() {
     fetchPage(page);
   }, [page, fetchPage]);
 
+  // Refetch when restored from bfcache (browser back from external page)
+  useEffect(() => {
+    const onPageShow = (e: PageTransitionEvent) => {
+      if (e.persisted) fetchPage(page);
+    };
+    const onVisibilityChange = () => {
+      if (document.visibilityState === "visible") fetchPage(page);
+    };
+    window.addEventListener("pageshow", onPageShow);
+    document.addEventListener("visibilitychange", onVisibilityChange);
+    return () => {
+      window.removeEventListener("pageshow", onPageShow);
+      document.removeEventListener("visibilitychange", onVisibilityChange);
+    };
+  }, [page, fetchPage]);
+
   return (
     <>
       <Header />

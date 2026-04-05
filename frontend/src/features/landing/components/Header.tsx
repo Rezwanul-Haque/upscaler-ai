@@ -5,9 +5,9 @@ import { usePathname } from "next/navigation";
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
 const NAV_LINKS = [
-  { label: "Gallery", href: "/gallery" },
-  { label: "Lab", href: "/lab" },
-  { label: "Docs", href: `${API_URL}/redoc` },
+  { label: "Gallery", href: "/gallery", external: false },
+  { label: "Lab", href: "/lab", external: false },
+  { label: "Docs", href: `${API_URL}/redoc`, external: true },
 ];
 
 export default function Header() {
@@ -36,6 +36,8 @@ export default function Header() {
               <a
                 key={link.label}
                 href={link.href}
+                target={link.external ? "_blank" : undefined}
+                rel={link.external ? "noopener noreferrer" : undefined}
                 className={
                   isActive
                     ? "text-primary border-b-2 border-primary pb-1"
