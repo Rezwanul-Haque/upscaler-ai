@@ -208,3 +208,9 @@ pytest --cov=src              # with coverage report
 | Model ID | Name | Scale | Description |
 |---|---|---|---|
 | `pillow-lanczos` | Pillow Lanczos | 2x | High-quality Lanczos resampling — fast, no GPU required |
+
+---
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
