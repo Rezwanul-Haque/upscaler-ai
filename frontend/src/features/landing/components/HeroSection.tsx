@@ -30,8 +30,8 @@ export default function HeroSection() {
   );
 
   return (
-    <section className="relative px-8 pt-16 pb-32 max-w-screen-2xl mx-auto">
-      <div className="grid lg:grid-cols-2 gap-16 items-center">
+    <section className="relative px-8 min-h-[calc(100vh-5rem)] flex items-center max-w-screen-2xl mx-auto">
+      <div className="grid lg:grid-cols-2 gap-12 items-center w-full">
         {/* Copy */}
         <div className="space-y-8">
           <div
@@ -90,31 +90,31 @@ export default function HeroSection() {
           onMouseLeave={() => { dragging.current = false; }}
           onTouchMove={onTouchMove}
         >
-          {/* Low-res base */}
+          {/* Upscaled — full background (right side) */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={LOW_RES_IMG}
-            alt="Low resolution source"
-            className="absolute inset-0 w-full h-full object-cover grayscale opacity-30"
+            src={UPSCALED_IMG}
+            alt="Upscaled output"
+            className="absolute inset-0 w-full h-full object-cover"
           />
 
-          {/* Upscaled overlay clipped to slider width */}
+          {/* Source overlay clipped to slider width (left side) */}
           <div
             className="absolute inset-y-0 left-0 overflow-hidden border-r-2 border-primary"
             style={{ width: `${sliderPct}%` }}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={UPSCALED_IMG}
-              alt="Upscaled output"
-              className="absolute inset-0 h-full object-cover"
+              src={LOW_RES_IMG}
+              alt="Low resolution source"
+              className="absolute inset-0 h-full object-cover grayscale opacity-50"
               style={{ width: `${10000 / sliderPct}%`, maxWidth: "none" }}
             />
             <div
-              className="absolute top-4 left-4 bg-surface-dim/80 px-2 py-1 text-[10px] tracking-widest border border-primary/20"
+              className="absolute top-4 left-4 bg-surface-dim/80 px-2 py-1 text-[10px] tracking-widest border border-outline-variant/20 text-on-surface-variant"
               style={{ fontFamily: "var(--font-label)" }}
             >
-              UPSCALED_400%
+              SOURCE_LOW_RES
             </div>
           </div>
 
@@ -128,12 +128,12 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* Source label */}
+          {/* Upscaled label */}
           <div
-            className="absolute top-4 right-4 bg-surface-dim/80 px-2 py-1 text-[10px] tracking-widest border border-outline-variant/20 text-on-surface-variant"
+            className="absolute top-4 right-4 bg-surface-dim/80 px-2 py-1 text-[10px] tracking-widest border border-primary/20"
             style={{ fontFamily: "var(--font-label)" }}
           >
-            SOURCE_LOW_RES
+            UPSCALED_400%
           </div>
 
           {/* Bottom legend */}
